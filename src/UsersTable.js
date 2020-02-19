@@ -4,36 +4,56 @@ import {Table} from 'antd'
 
 class UsersTable extends Component {
 
-     dataSource2 = [
+     dataSource = [
         {
-          key: '1',
-          name: 'Mike',
-          age: 32,
-          address: '10 Downing Street',
+          dateCadastro: '19/02/2020',
+          nome: 'Mike',
+          dateNasci: '19/02/2000',
+          idade: '25',
+          cpf: '123.456.789-00'
         },
         {
-          key: '2',
-          name: 'John',
-          age: 42,
-          address: '10 Downing Street',
+          dateCadastro: '19/02/2020',
+          nome: 'Ricardo',
+          dateNasci: '19/02/2000',
+          idade: '25',
+          cpf: '123.456.789-00'
         },
+        {
+          dateCadastro: '19/02/2020',
+          nome: 'Pablo',
+          dateNasci: '19/02/2000',
+          idade: '25',
+          cpf: '123.456.789-00'
+        },
+       
       ];
       
-        columns2 = [
+        columns = [
         {
-          title: 'Name',
-          dataIndex: 'name',
-          key: 'name',
+          title: 'Data Cadastro',
+          dataIndex: 'dateCadastro',
+          key: 'datecadastro',
         },
         {
-          title: 'Age',
-          dataIndex: 'age',
-          key: 'age',
+          title: 'Nome',
+          dataIndex: 'nome',
+          key: 'nome',
         },
         {
-          title: 'Address',
-          dataIndex: 'address',
-          key: 'address',
+          title: 'Data de Nascimetno',
+          dataIndex: 'dateNasci',
+          key: 'dateNasci',
+        },
+        {
+          title: 'Idade',
+          dataIndex: 'idade',
+          key: 'idade',
+        },
+        {
+          title: 'CPF',
+          dataIndex: 'cpf',
+          key: 'cpf',
         },
       ];
 
@@ -42,8 +62,8 @@ class UsersTable extends Component {
    render() {
        return (
            <div>
-               <Table dataSource={this.dataSource2} columns={this.columns2} />;                           
-               )
+               <Table dataSource={this.dataSource} columns={this.columns} />                           
+               
            </div>
        );
    }

@@ -9,5 +9,10 @@ var initalState = {
 }
 
 const usersReducer = (state = initalState, action) =>{
+    switch (action.payload) {
+        case 'ADD_USER':
+        let NewUser = state.user;
+    }
+    break;
     
 }

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, DatePicker, TimePicker, Button, } from 'antd';
+import moment from 'moment';
 import {
     Input,
+    InputNumber,
     Tooltip,
     Icon,
     Cascader,
@@ -22,30 +24,39 @@ class UserForm extends React.Component {
 }
  
 render() {
-    /* const { getFieldDecorator } = this.props.form;
-    const formItemLayout = {
-      labelCol: {
-        xs: { span: 24 },
-        sm: { span: 8 },
-      },
-      wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 16 },
-      },
-    };*/
+    const dateFormat = 'YYYY/MM/DD';
+
+    const dateFormatList = ['DD/MM/YYYY', 'DD/MM/YY'];
     const config = {
         rules: [{ type: 'object', required: true, message: 'Please select time!' }],
       }; 
 
     return (
         //<div className="User-Form-Container">
-        <Form /* {...formItemLayout} */ onSubmit={this.handleSubmit}>
+        <Form  onSubmit={this.handleSubmit}>
             <Form.Item label="Cadastro">
-                {/* {getFieldDecorator */}('Data do Cadastro', config)(<DatePicker />)}
+              <DatePicker defaultValue={moment('01/01/2015', dateFormatList[0])} format={dateFormatList} />
             </Form.Item>
+            
+            <Form.Item label="Nome">
+              <Input placeholder="Digite seu nome " />
+            </Form.Item>
+
+            <Form.Item label="Data de Nascimento">
+              <DatePicker defaultValue={moment('01/01/2015', dateFormatList[0])} format={dateFormatList} />
+            </Form.Item>
+            <Form.Item label="Idade">
+              <Input></Input>
+            </Form.Item>
+
+            <Form.Item label="CPF">
+              <Input></Input>
+            </Form.Item>
+
             <Form.Item>
-                <Button type="primary" htmlType="submit">Submit</Button>
+                <Button type="primary" htmlType="submit">Cadastrar</Button>
             </Form.Item>
+
         </Form>
        // </div>
     );
@@ -53,7 +64,7 @@ render() {
 }
 
 const mapStateToProps = state => ({
-    
+    //user: state.
 });
 
 export default connect(mapStateToProps)(UserForm);
