@@ -83,4 +83,5 @@ const mapStateToProps = (state) => {
 
    }
 }
+console.log(mapStateToProps)
 export default connect(mapStateToProps)(UsersTable);

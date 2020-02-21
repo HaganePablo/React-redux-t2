@@ -1,19 +1,15 @@
-import moment from "moment"
-var initalState = {
-    
-    /* dateCadastro: '',
-    nome: '',
-    dateNasci: '',
-    cpf: '',
-    idade: '',
-    editing: false, */
+//import moment from "moment"
+var initialState = {
+   
     users: [
         {
             id: new Date(),
             dateCadastro: '20/2/2020',
             nome: 'Pablo A S',
             dateNasci: '25/12/1991',
-            cpf: '123.456.789-90'
+            cpf: '123.456.789-90',
+            idade: '28',
+            editing: false
         },
     ],
     form: {
@@ -27,7 +23,7 @@ var initalState = {
 
 }
 
-const usersReducer = (state = initalState, action) =>{
+const usersReducer = (state = initialState, action) =>{
     switch (action.type) {
       case 'ADD_USER':
 
@@ -35,8 +31,8 @@ const usersReducer = (state = initalState, action) =>{
         tempusers.push(action.payload);
         state={
           ...state,
-          users: tempusers,
-          form: initalState.form
+          user: tempusers,
+          form: initialState.form
         }
         break;
         default:

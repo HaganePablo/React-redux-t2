@@ -4,7 +4,6 @@ import moment from 'moment';
 import {
     Button,  
     Input,
-    InputNumber,
     Form, 
     DatePicker,
     Tooltip,
@@ -20,16 +19,16 @@ import { AddUser } from './actions/userAction';
   
 
 
-class UserForm extends React.Component {
+class UserForm extends Component {
     handleSubmit = (event) => {
     event.preventDefault();
     const data = {
      id: new Date(),
-     date: this.props.dateCadastro,
-     nome: this.props.nome,
-     dateNasci: this.props.dateNasci,
-     idade: this.props.idade,
-     cpf: this.props.cpf,
+     date: this.props.user.dateCadastro,
+     nome: this.props.user.nome,
+     dateNasci: this.props.user.dateNasci,
+     idade: this.props.user.idade,
+     cpf: this.props.user.cpf,
      editing: false
     }
     this.props.dispatch(AddUser(data));
@@ -41,25 +40,25 @@ render() {
   
     return (
           <div className="User-Form-Container">
-            <Form  onSubmit={this.handleSubmit}>
-              <Form.Item label="Cadastro" >
-                <DatePicker value={this.props.user.form.dateCadastro}  format={dateFormatList}required type="text" />
+            <Form  onSubmit={this.handleSubmit} >
+              <Form.Item label="Cadastro" value={this.props.user.form.dateCadastro} >
+                <DatePicker   format={dateFormatList}required type="text" />
               </Form.Item>
                 
-              <Form.Item label="Nome" >
-                <Input value={this.props.user.form.nome} placeholder="Digite seu nome " required type="text" />
+              <Form.Item label="Nome" value={this.props.user.form.nome} >
+                <Input  placeholder="Digite seu nome " required type="text" />
               </Form.Item>
 
-              <Form.Item label="Data de Nascimento" >
-                <DatePicker value={this.props.user.form.dateNasci} format={dateFormatList} required type="text" />
+              <Form.Item label="Data de Nascimento" value={this.props.user.form.dateNasci} >
+                <DatePicker  format={dateFormatList} required type="text" />
               </Form.Item>
 
-              <Form.Item  label="Idade" >
-                <Input value={this.props.user.form.idade} placeholder=" Digite sua Idade" required type="text"></Input>
+              <Form.Item  label="Idade" value={this.props.user.form.idade} >
+                <Input  placeholder=" Digite sua Idade" required type="text"></Input>
               </Form.Item>
 
-              <Form.Item label="CPF" >
-                <Input value={this.props.user.form.cpf} placeholder="Digite seu CPF" required type="text"></Input>
+              <Form.Item label="CPF" value={this.props.user.form.cpf} >
+                <Input  placeholder="Digite seu CPF" required type="text"></Input>
               </Form.Item>
 
               <Form.Item>
