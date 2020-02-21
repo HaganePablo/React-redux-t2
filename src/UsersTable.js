@@ -1,34 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Table, Button,} from 'antd'
-import {addUser} from './actions/userAction'
 
 class UsersTable extends Component {
-
-     dataSource = [
-        {
-          dateCadastro: '19/02/2020',
-          nome: 'Mike',
-          dateNasci: '19/02/2000',
-          idade: '25',
-          cpf: '123.456.789-00'
-        },
-        {
-          dateCadastro: '19/02/2020',
-          nome: 'Ricardo',
-          dateNasci: '19/02/2000',
-          idade: '25',
-          cpf: '123.456.789-00'
-        },
-        {
-          dateCadastro: '19/02/2020',
-          nome: 'Pablo',
-          dateNasci: '19/02/2000',
-          idade: '25',
-          cpf: '123.456.789-00'
-        },
-       
-      ];
       
         columns = [
         {
@@ -60,12 +34,10 @@ class UsersTable extends Component {
           title: 'Editar',
           key: 'edit',
           width: 100,
-          render: () => <a>Editar</a>,
+          render: () => <a>Deletar</a>,
         },
 
       ];
-
-     
      
    render() {
        return (
@@ -83,5 +55,4 @@ const mapStateToProps = (state) => {
 
    }
 }
-console.log(mapStateToProps)
 export default connect(mapStateToProps)(UsersTable);
