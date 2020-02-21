@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Table} from 'antd'
+import {Table, Button,} from 'antd'
+import {addUser} from './actions/userAction'
 
 class UsersTable extends Component {
 
@@ -55,6 +56,13 @@ class UsersTable extends Component {
           dataIndex: 'cpf',
           key: 'cpf',
         },
+        {
+          title: 'Editar',
+          key: 'edit',
+          width: 100,
+          render: () => <a>Editar</a>,
+        },
+
       ];
 
      
@@ -62,7 +70,7 @@ class UsersTable extends Component {
    render() {
        return (
            <div>
-               <Table dataSource={this.dataSource} columns={this.columns} />                           
+               <Table dataSource={this.props.user.users} columns={this.columns} />                           
                
            </div>
        );
@@ -71,7 +79,7 @@ class UsersTable extends Component {
 
 const mapStateToProps = (state) => {
    return {
-      users: state.users
+      user: state.user
 
    }
 }
