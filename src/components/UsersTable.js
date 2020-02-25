@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Table, Button,} from 'antd'
+import {Table, Button,Divider} from 'antd'
+import moment from "moment";
+import {DeleteUser,EditUser} from "../actions/userAction"
 
 class UsersTable extends Component {
       
@@ -9,6 +11,7 @@ class UsersTable extends Component {
           title: 'Data Cadastro',
           dataIndex: 'dateCadastro',
           key: 'datecadastro',
+          render: text => moment(text).format("DD/MM/YYYY")
         },
         {
           title: 'Nome',
@@ -19,22 +22,41 @@ class UsersTable extends Component {
           title: 'Data de Nascimetno',
           dataIndex: 'dateNasci',
           key: 'dateNasci',
+          render: text => moment(text).format("DD/MM/YYYY")
         },
         {
           title: 'Idade',
           dataIndex: 'idade',
-          key: 'idade',
+          key: 'idade'
         },
         {
           title: 'CPF',
           dataIndex: 'cpf',
-          key: 'cpf',
+          key: 'cpf'
         },
         {
-          title: 'Editar',
-          key: 'edit',
-          width: 100,
-          render: () => <a>Deletar</a>,
+          title: 'Ações',
+          key: 'action',
+       width: 100,
+          render: (text, row) => (
+            <span><Button 
+            size="small"
+            icon="delete"
+            type="danger"
+            onClick={() => this.props.dispatch(DeleteUser(row.id))}>
+            Deletar 
+          </Button>
+          <Divider type="horizontal" />
+          <Button
+              size="small"
+              icon="edit"
+              type="primary"
+              onClick={() => this.props.dispatch(EditUser(row.id))}>
+              Editar
+            </Button>
+          </span>
+              
+          )
         },
 
       ];

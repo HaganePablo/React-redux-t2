@@ -1,21 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import moment from 'moment';
+
 import {
     Button,  
     Input,
     Form, 
-    DatePicker,
-    Tooltip,
-    Icon,
-    Cascader,
-    Select,
-    Row,
-    Col,
-    Checkbox,
-    AutoComplete,
-  } from 'antd';
-import { AddUser, SetValuesForm } from './actions/userAction';
+    DatePicker} from 'antd';
+import { AddUser, SetValuesForm, UpdateUser } from '../actions/userAction';
+
   
 
 
@@ -23,7 +15,7 @@ class UserForm extends Component {
     handleSubmit = (e) => {
     e.preventDefault();
     const data = {
-     id: moment(new Date()),
+     id: Math.random(),
      dateCadastro: this.props.user.form.dateCadastro,
      nome: this.props.user.form.nome,
      dateNasci: this.props.user.form.dateNasci,
@@ -31,13 +23,16 @@ class UserForm extends Component {
      cpf: this.props.user.form.cpf,
      editing: false
     }
-    console.log(data)
-    this.props.dispatch(AddUser(data));
+    if (this.props.user.form.editing === false)
+      this.props.dispatch(AddUser(data));
+    else
+      this.props.dispatch(UpdateUser(data));
 };
 
   handleChange (data, field) {
-    if (field =="nome")
-      this.props.dispatch(
+    console.log(field,data);
+    if (field ==="nome")
+    this.props.dispatch(
         SetValuesForm({
           nome: data,
           dateCadastro: this.props.user.form.dateCadastro,
@@ -47,7 +42,8 @@ class UserForm extends Component {
 
         })
       );
-    if (field == "dateCadastro")
+    if (field === "dateCadastro")
+        
         this.props.dispatch(
           SetValuesForm({
           name: this.props.user.name,
@@ -57,7 +53,7 @@ class UserForm extends Component {
           cpf: this.props.user.form.cpf
           })
         );
-    if (field == "dateNasci" )
+    if (field === "dateNasci" )
       this.props.dispatch(
           SetValuesForm({
             name: this.props.user.name,
@@ -67,7 +63,7 @@ class UserForm extends Component {
             cpf: this.props.user.form.cpf
             })
           );
-    if (field == "idade" )
+    if (field === "idade" )
       this.props.dispatch(
           SetValuesForm({
             name: this.props.user.name,
@@ -77,7 +73,7 @@ class UserForm extends Component {
             cpf: this.props.user.form.cpf
             })
           );
-    if (field == "cpf" )
+    if (field === "cpf" )
       this.props.dispatch(
           SetValuesForm({
             name: this.props.user.name,
@@ -99,9 +95,9 @@ render() {
               <Form.Item label="Data de Cadastro" >
                 <DatePicker 
                 value={this.props.user.form.dateCadastro} 
-                //required 
-                type="text"
-                onChange= {(e) => this.handleChange(e.target.value,'dateCadastro')} />
+                required 
+                type="DateInput"
+                onChange= {value => this.handleChange(value,'dateCadastro')} />
               </Form.Item>
                 
               <Form.Item label="Nome" >
@@ -116,9 +112,9 @@ render() {
               <Form.Item label="Data de Nascimento" >
                 <DatePicker 
                 value={this.props.user.form.dateNasci}
-                //required 
-                type="text"
-                onChange= {(e) => this.handleChange(e.target.value,'dateNascimento')}/>
+                required 
+                type="DateInput"
+                onChange= {value => this.handleChange(value,'dateNasci')}/>
               </Form.Item>
 
               <Form.Item  label="Idade" >
@@ -139,7 +135,7 @@ render() {
               </Form.Item>
 
               <Form.Item>
-                <Button type="primary" htmlType="submit">Cadastrar</Button>
+                <Button type="primary" htmlType="submit">{this.props.user.form.editing ?'Editar' : 'Cadastrar'}</Button>
               </Form.Item>
 
             </Form>
@@ -149,7 +145,7 @@ render() {
 }
 
 const mapStateToProps = state => ({
-    user: state.user
+    user: state.user,
     
 });
 

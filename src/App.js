@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import UsersTable from './UsersTable';
+import UsersTable from './components/UsersTable';
 import { Row, Col } from 'antd';
-import UserForm from './UserForm';
+import UserForm from './components/UserForm';
 import {PageHeader} from 'antd';
 
 class App extends Component {
