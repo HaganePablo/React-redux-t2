@@ -2,32 +2,31 @@ import React, { Component } from 'react';
 import UsersTable from './components/UsersTable';
 import { Row, Col } from 'antd';
 import UserForm from './components/UserForm';
-import {PageHeader} from 'antd';
+import {Layout} from 'antd';
+
+const {Header, Content} = Layout
 
 class App extends Component {
   render() {
     return (
-      <PageHeader
-      style={{
-        border: '1px solid rgb(235, 237, 240)',
-      }}
-      onBack={() => null}
-      title="Title"
-      subTitle="This is a subtitle"
-    />,
-    <body>
+    
       <div className="App">
-        <div className="navbar">
-          <h2 className="center ">Cadastro Usuário</h2>
-        </div>
+        <Layout>
+         <Header style={{ position: 'top', zIndex: 1, width: '100%', color: '' }}>
+           <h2>Tarefa 2</h2>
+          </Header>
+
+          <Content style={{ padding: '2 50px' }}>
+            
           <Row>
             <Col span={6}><UserForm /></Col>
             <Col span={18}><UsersTable /></Col>
           </Row>
-        
+          </Content>
+          </Layout>
         
       </div>
-      </body>
+     
     );
   }
 }
